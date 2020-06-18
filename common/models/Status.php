@@ -1,30 +1,26 @@
 <?php
 
-namespace frontend\models;
+namespace common\models;
 
 
-use yii\db\ActiveQuery;
 use yii\db\ActiveRecord;
 
 /**
- * This is the model class for table "role".
+ * This is the model class for table "status".
  *
  * @property int $id
- * @property string|null $role
- * @property string|null $actions
+ * @property string|null $name
  * @property string $created_at
  * @property string $updated_at
- *
- * @property User[] $users
  */
-class Role extends ActiveRecord
+class Status extends ActiveRecord
 {
     /**
      * {@inheritdoc}
      */
     public static function tableName()
     {
-        return 'role';
+        return 'status';
     }
 
     /**
@@ -33,10 +29,8 @@ class Role extends ActiveRecord
     public function rules()
     {
         return [
-            [['actions'], 'string'],
             [['created_at', 'updated_at'], 'safe'],
-            [['role'], 'string', 'max' => 255],
-            [['role'], 'unique'],
+            [['name'], 'string', 'max' => 100],
         ];
     }
 
@@ -47,18 +41,9 @@ class Role extends ActiveRecord
     {
         return [
             'id' => 'ID',
-            'role' => 'Role',
-            'actions' => 'Actions',
+            'name' => 'Name',
             'created_at' => 'Created At',
             'updated_at' => 'Updated At',
         ];
-    }
-
-    /**
-     * @return ActiveQuery
-     */
-    public function getUsers()
-    {
-        return $this->hasMany(User::class, ['role_id' => 'id']);
     }
 }

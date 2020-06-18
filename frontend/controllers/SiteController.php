@@ -2,7 +2,7 @@
 namespace frontend\controllers;
 
 use frontend\forms\SinginForm;
-use frontend\models\Task;
+use common\models\Task;
 use Yii;
 use yii\filters\AccessControl;
 

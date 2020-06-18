@@ -1,6 +1,6 @@
 <?php
 
-namespace frontend\models;
+namespace common\models;
 
 use Exception;
 use frontend\forms\CompleteTaskForm;

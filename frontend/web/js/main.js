@@ -9,7 +9,7 @@ for (var i = 0; i < openModalLinks.length; i++) {
     var modalId = event.currentTarget.getAttribute("data-for");
 
     var modal = document.getElementById(modalId);
-    modal.setAttribute("style", "display: block; bottom: auto");
+    modal.setAttribute("style", "display: block");
     overlay.setAttribute("style", "display: block");
 
   });

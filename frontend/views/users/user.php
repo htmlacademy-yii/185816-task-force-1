@@ -1,11 +1,13 @@
 <?php
 
 /**
- * @var \frontend\models\User $user
+ * @var \common\models\User $user
  **/
 
 use yii\helpers\Html;
 
+
+$this->title = $user->full_name;
 ?>
 <div class="main-container page-container">
     <section class="content-view">

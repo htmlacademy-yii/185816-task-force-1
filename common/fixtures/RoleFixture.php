@@ -2,7 +2,7 @@
 
 namespace common\fixtures;
 
-use frontend\models\Role;
+use common\models\Role;
 use yii\test\ActiveFixture;
 
 class RoleFixture extends ActiveFixture

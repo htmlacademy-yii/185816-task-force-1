@@ -4,7 +4,7 @@
 namespace frontend\forms;
 
 
-use frontend\models\Category;
+use common\models\Category;
 use yii\base\Model;
 use yii\web\UploadedFile;
 
@@ -62,6 +62,10 @@ class CreateTaskForm extends Model
         ];
     }
 
+    /**
+     * @return string
+     */
+
     public function upload()
     {
         if (!file_exists($this->dir)) {
@@ -72,7 +76,7 @@ class CreateTaskForm extends Model
             $this->file = UploadedFile::getInstance($this, 'file');
             $this->file->saveAs($this->dir . $this->file->baseName . '.' . $this->file->extension);
 
-            return $this->dir . $this->file->baseName . '.' . $this->file->extension;
+            return '/' .  $this->dir . $this->file->baseName . '.' . $this->file->extension;
         } else {
             return '';
         }

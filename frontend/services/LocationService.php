@@ -2,9 +2,9 @@
 
 namespace frontend\services;
 
+use Exception;
 use GuzzleHttp\Client;
 use yii\helpers\Json;
-use yii\web\Request;
 
 class LocationService
 {
@@ -28,10 +28,10 @@ class LocationService
 
     /**
      * @param string $address
-     * @return array
+     * @return string
      */
 
-    protected function sendResponse(string $address)
+    protected function sendResponse(string $address): string
     {
         $response = $this->client->request('GET', $this->uri, [
             'query' => [
@@ -44,13 +44,19 @@ class LocationService
         return Json::decode($response->getBody()->getContents(), true);
     }
 
-    public function getResponse($address)
+    /**
+     * @param $address
+     * @return string
+     * @throws Exception
+     */
+
+    public function getResponse(string $address): string
     {
         $data = $this->sendResponse($address);
         $result = [];
 
         if (!isset($data)) {
-            throw new \Exception('Результата не найдено');
+            throw new Exception('Результата не найдено');
         }
 
         foreach ($data['response']['GeoObjectCollection']['featureMember'] as $item) {
@@ -60,12 +66,18 @@ class LocationService
         return Json::encode($result, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT);
     }
 
-    public function getCoords($address)
+    /**
+     * @param $address
+     * @return string
+     * @throws Exception
+     */
+
+    public function getCoords(string $address): string
     {
         $data = $this->sendResponse($address);
 
         if (!isset($data)) {
-            throw new \Exception('Результата не найдено');
+            throw new Exception('Результата не найдено');
         }
 
         return Json::encode($data['response']['GeoObjectCollection']['featureMember'][0]['GeoObject']['Point']['pos'], JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT);

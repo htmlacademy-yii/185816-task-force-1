@@ -26,6 +26,9 @@ class m200130_121010_create_user_table extends Migration
             'phone' => $this->char('50'),
             'skype' => $this->char('100'),
             'messenger' => $this->text(),
+            'hidden' => $this->boolean()->defaultValue(false),
+            'view_only_customer' => $this->boolean()->defaultValue(false),
+            'avatar' => $this->string()->defaultValue('/img/default-avatar.jpg'),
             'rating' => $this->float()->notNull()->defaultValue(0),
             'created_at' => $this->dateTime()->defaultValue(Date::getDateNow())->notNull(),
             'updated_at' => $this->dateTime()->defaultValue(Date::getDateNow())->notNull()

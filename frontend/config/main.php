@@ -33,7 +33,7 @@ return [
             ]
         ],
         'user' => [
-            'identityClass' => \frontend\models\User::class,
+            'identityClass' => \common\models\User::class,
             'enableAutoLogin' => true,
             'identityCookie' => ['name' => '_identity-frontend', 'httpOnly' => true],
         ],
@@ -57,19 +57,23 @@ return [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
-                'tasks/view/<id:\d+>' => 'tasks/view',
+                'tasks' => 'tasks/index',
+                'tasks/<id:\d+>' => 'tasks/view',
                 'task/cancel/<id:\d+>' => 'task/cancel',
                 'task/work/<id:\d+>/<executor:\d+>' => 'task/work',
                 'task/refuse/<id:\d+>' => 'task/refuse',
                 'task/complete/<id:\d+>' => 'task/complete',
-                'users/view/<id:\d+>' => 'users/view',
+                'users' => 'users/index',
+                'users/<id:\d+>' => 'users/view',
+                'users/sort/<sort:>' => 'users/sort',
                 'response/new/<task_id:\d+>' => 'response/new',
                 'response/cancel/<id:\d+>' => 'response/cancel',
                 [
                     'class' => 'yii\rest\UrlRule',
                     'controller' => 'api/messages'
                 ],
-                'api/messages/task/<id:\d+>' => 'api/messages/task'
+                'api/messages/task/<id:\d+>' => 'api/messages/task',
+                'event/disable/<id:\d+>' => 'event/disable'
             ],
         ],
     ],

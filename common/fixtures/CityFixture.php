@@ -1,7 +1,7 @@
 <?php
 namespace common\fixtures;
 
-use frontend\models\City;
+use common\models\City;
 use yii\test\ActiveFixture;
 
 class CityFixture extends ActiveFixture

@@ -2,7 +2,7 @@
 
 namespace common\fixtures;
 
-use frontend\models\Category;
+use common\models\Category;
 use yii\test\ActiveFixture;
 
 class CategoryFixture extends ActiveFixture

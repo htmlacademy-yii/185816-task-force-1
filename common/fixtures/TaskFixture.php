@@ -1,8 +1,8 @@
 <?php
 namespace common\fixtures;
 
-use frontend\models\Category;
-use frontend\models\Task;
+use common\models\Category;
+use common\models\Task;
 use yii\test\ActiveFixture;
 
 class TaskFixture extends ActiveFixture

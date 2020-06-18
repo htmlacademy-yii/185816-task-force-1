@@ -1,29 +1,29 @@
 <?php
 
-namespace frontend\models;
+namespace common\models;
 
 use yii\db\ActiveQuery;
 use yii\db\ActiveRecord;
 
 /**
- * This is the model class for table "city".
+ * This is the model class for table "category".
  *
  * @property int $id
- * @property string|null $name
+ * @property string|null $category_name
+ * @property string|null $tag
  * @property string $created_at
  * @property string $updated_at
  *
  * @property Task[] $tasks
- * @property User[] $users
  */
-class City extends ActiveRecord
+class Category extends ActiveRecord
 {
     /**
      * {@inheritdoc}
      */
     public static function tableName()
     {
-        return 'city';
+        return 'category';
     }
 
     /**
@@ -33,7 +33,7 @@ class City extends ActiveRecord
     {
         return [
             [['created_at', 'updated_at'], 'safe'],
-            [['name'], 'string', 'max' => 50],
+            [['category_name', 'tag'], 'string', 'max' => 255],
         ];
     }
 
@@ -44,7 +44,8 @@ class City extends ActiveRecord
     {
         return [
             'id' => 'ID',
-            'name' => 'Name',
+            'category_name' => 'Category Name',
+            'tag' => 'Tag',
             'created_at' => 'Created At',
             'updated_at' => 'Updated At',
         ];
@@ -55,14 +56,14 @@ class City extends ActiveRecord
      */
     public function getTasks()
     {
-        return $this->hasMany(Task::class, ['city_id' => 'id']);
+        return $this->hasMany(Task::class, ['category_id' => 'id']);
     }
 
     /**
      * @return ActiveQuery
      */
-    public function getUsers()
+    public function getCategoryExecutor()
     {
-        return $this->hasMany(User::class, ['city_id' => 'id']);
+        return $this->hasMany(CategoryExecutor::class, ['category_id' => 'id']);
     }
 }

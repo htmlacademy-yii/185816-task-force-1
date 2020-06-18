@@ -4,9 +4,9 @@
 namespace frontend\controllers;
 
 use frontend\forms\NewResponseForm;
-use frontend\models\Response;
-use frontend\models\Task;
-use frontend\models\User;
+use common\models\Response;
+use common\models\Task;
+use common\models\User;
 use yii\helpers\Url;
 use Yii;
 use yii\base\Action;

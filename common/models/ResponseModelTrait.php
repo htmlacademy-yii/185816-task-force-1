@@ -3,7 +3,7 @@
 
 namespace common\models;
 
-use frontend\models\Response;
+use common\models\Response;
 use yii\web\NotFoundHttpException;
 
 trait ResponseModelTrait

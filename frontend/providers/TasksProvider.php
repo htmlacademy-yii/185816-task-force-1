@@ -2,13 +2,11 @@
 
 namespace frontend\providers;
 
-use frontend\models\Task;
+use common\models\Task;
 use yii\data\ActiveDataProvider;
 
 class TasksProvider extends Provider
 {
-    const SIZE_ELEMENT = 10;
-
     protected static function getDate($period)
     {
         $now = strtotime('now');
@@ -17,7 +15,13 @@ class TasksProvider extends Provider
         return date('Y-m-d H:i:s', $diff);
     }
 
-    public static function getContent(array $attributes): ActiveDataProvider
+    /***
+     * @param array $attributes
+     * @param bool $sort
+     * @return ActiveDataProvider
+     */
+
+    public static function getContent(array $attributes, $sort = false): ActiveDataProvider
     {
         $query = Task::find()->where(['status_id' => Task::STATUS_DEFAULT])->with(['city', 'category']);
 

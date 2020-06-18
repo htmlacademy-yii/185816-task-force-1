@@ -4,10 +4,10 @@
 namespace common\fixtures;
 
 
-use frontend\models\Category;
-use frontend\models\User;
+use common\models\Category;
+use common\models\User;
 use yii\test\ActiveFixture;
-use frontend\models\CategoryExecutor;
+use common\models\CategoryExecutor;
 
 class CategoryExecutorFixture extends ActiveFixture
 {

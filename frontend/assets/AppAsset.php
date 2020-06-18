@@ -13,9 +13,8 @@ class AppAsset extends AssetBundle
     public $baseUrl = '@web';
     public $css = [
         'css/normalize.css',
-        'css/site.css',
         'css/style.css',
-        //'https://cdn.jsdelivr.net/npm/@tarekraafat/autocomplete.js@7.2.0/dist/css/autoComplete.min.css'
+        'css/dropzone.css'
     ];
     public $js = [
         '/js/vue.js',
@@ -24,7 +23,8 @@ class AppAsset extends AssetBundle
         '/js/autoComplete.js',
         'https://api-maps.yandex.ru/2.1/?apikey=e666f398-c983-4bde-8f14-e3fec900592a&lang=ru_RU" type="text/javascript',
         '/js/map.js',
-        '/js/messenger.js'
+        '/js/messenger.js',
+        '/js/dropzone.js'
     ];
     public $depends = [
         'yii\web\YiiAsset',

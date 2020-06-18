@@ -1,8 +1,9 @@
 <?php
 
-namespace frontend\models;
+namespace common\models;
 
 
+use phpDocumentor\Reflection\Types\Self_;
 use yii\db\ActiveQuery;
 use yii\db\ActiveRecord;
 
@@ -65,5 +66,11 @@ class CategoryExecutor extends ActiveRecord
     public function getUser()
     {
         return $this->hasOne(User::class, ['id' => 'user_id']);
+    }
+
+    public static function create($values)
+    {
+        $query = \Yii::$app->db->createCommand()
+        ->insert(self::tableName(), []);
     }
 }

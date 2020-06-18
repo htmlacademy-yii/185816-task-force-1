@@ -4,7 +4,7 @@
 namespace frontend\forms;
 
 use yii\base\Model;
-use frontend\models\User;
+use common\models\User;
 
 class SinginForm extends Model
 {

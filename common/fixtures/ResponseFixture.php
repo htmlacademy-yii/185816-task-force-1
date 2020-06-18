@@ -1,7 +1,7 @@
 <?php
 namespace common\fixtures;
 
-use frontend\models\Response;
+use common\models\Response;
 use yii\test\ActiveFixture;
 
 class ResponseFixture extends ActiveFixture

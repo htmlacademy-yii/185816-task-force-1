@@ -7,8 +7,8 @@
  */
 
 use yii\widgets\ActiveForm;
-use frontend\models\Category;
-use frontend\models\City;
+use common\models\Category;
+use common\models\City;
 
 $this->title = 'Публикация нового задания';
 

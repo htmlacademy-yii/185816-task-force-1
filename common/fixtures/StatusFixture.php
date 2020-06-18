@@ -2,7 +2,7 @@
 
 namespace common\fixtures;
 
-use frontend\models\Status;
+use common\models\Status;
 use yii\test\ActiveFixture;
 
 class StatusFixture extends ActiveFixture

@@ -1,28 +1,29 @@
 <?php
 
-namespace frontend\models;
+namespace common\models;
 
 use yii\db\ActiveQuery;
 use yii\db\ActiveRecord;
 
 /**
- * This is the model class for table "user_status".
+ * This is the model class for table "city".
  *
  * @property int $id
- * @property string|null $status
+ * @property string|null $name
  * @property string $created_at
  * @property string $updated_at
  *
+ * @property Task[] $tasks
  * @property User[] $users
  */
-class UserStatus extends ActiveRecord
+class City extends ActiveRecord
 {
     /**
      * {@inheritdoc}
      */
     public static function tableName()
     {
-        return 'user_status';
+        return 'city';
     }
 
     /**
@@ -32,8 +33,7 @@ class UserStatus extends ActiveRecord
     {
         return [
             [['created_at', 'updated_at'], 'safe'],
-            [['status'], 'string', 'max' => 255],
-            [['status'], 'unique'],
+            [['name'], 'string', 'max' => 50],
         ];
     }
 
@@ -44,7 +44,7 @@ class UserStatus extends ActiveRecord
     {
         return [
             'id' => 'ID',
-            'status' => 'Status',
+            'name' => 'Name',
             'created_at' => 'Created At',
             'updated_at' => 'Updated At',
         ];
@@ -53,8 +53,16 @@ class UserStatus extends ActiveRecord
     /**
      * @return ActiveQuery
      */
+    public function getTasks()
+    {
+        return $this->hasMany(Task::class, ['city_id' => 'id']);
+    }
+
+    /**
+     * @return ActiveQuery
+     */
     public function getUsers()
     {
-        return $this->hasMany(User::class, ['user_status_id' => 'id']);
+        return $this->hasMany(User::class, ['city_id' => 'id']);
     }
 }

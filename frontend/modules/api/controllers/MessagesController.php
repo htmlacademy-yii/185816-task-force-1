@@ -2,7 +2,7 @@
 
 namespace app\modules\api\controllers;
 
-use frontend\models\Message;
+use common\models\Message;
 use yii\helpers\Json;
 use yii\rest\ActiveController;
 

@@ -13,6 +13,8 @@ return [
         'phone' => '+79519796545',
         'skype' => 'mAdam@gmail.com',
         'messenger' => 'mAdam@gmail.com',
+        'hidden' => false,
+        'view_only_customer' => false,
         'rating' => '5'
     ],
     [
@@ -27,6 +29,8 @@ return [
         'phone' => '+79519796585',
         'skype' => 'brenda@gmail.com',
         'messenger' => 'brenda@gmail.com',
+        'hidden' => false,
+        'view_only_customer' => false,
         'rating' => '5'
     ]
 ];

@@ -4,9 +4,9 @@ namespace frontend\controllers;
 
 use frontend\forms\CompleteTaskForm;
 use frontend\forms\CreateTaskForm;
-use frontend\models\Comment;
-use frontend\models\Task;
-use frontend\models\User;
+use common\models\Comment;
+use common\models\Task;
+use common\models\User;
 use frontend\services\LocationService;
 use frontend\src\exceptions\StatusException;
 use frontend\src\status\CancelAction;

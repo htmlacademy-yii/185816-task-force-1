@@ -1,8 +1,8 @@
 <?php
 namespace common\fixtures;
 
-use frontend\models\Comment;
-use frontend\models\Task;
+use common\models\Comment;
+use common\models\Task;
 use yii\test\ActiveFixture;
 
 class CommentFixture extends ActiveFixture
