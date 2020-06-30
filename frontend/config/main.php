@@ -25,6 +25,16 @@ return [
     ],
     'controllerNamespace' => 'frontend\controllers',
     'components' => [
+        'authClientCollection' => [
+            'class' => yii\authclient\Collection::class,
+            'clients' => [
+                'vkontakte' => [
+                    'class' => 'yii\authclient\clients\VKontakte',
+                    'clientId' => '7515660',
+                    'clientSecret' => 'bMEQFPcHlgweqppYYSLJ',
+                ],
+            ],
+        ],
         'request' => [
             'csrfParam' => '_csrf-frontend',
             'cookieValidationKey' => 'asdasdas',
@@ -57,6 +67,7 @@ return [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
+                '/' => 'site/index',
                 'tasks' => 'tasks/index',
                 'tasks/<id:\d+>' => 'tasks/view',
                 'task/cancel/<id:\d+>' => 'task/cancel',

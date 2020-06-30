@@ -18,7 +18,6 @@ use Yii;
 use yii\base\Action;
 use yii\base\InvalidConfigException;
 use yii\helpers\Url;
-use yii\web\BadRequestHttpException;
 use yii\web\NotFoundHttpException;
 
 
@@ -37,7 +36,6 @@ class TaskController extends BaseController
     /**
      * @param Action $action
      * @return bool
-     * @throws BadRequestHttpException
      * @throws NotFoundHttpException
      */
 

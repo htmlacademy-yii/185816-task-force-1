@@ -3,6 +3,7 @@
 namespace common\models;
 
 use common\models\TaskModelTrait;
+use Exception;
 use frontend\forms\CreateTaskForm;
 use frontend\services\LocationService;
 use Yii;
@@ -308,7 +309,7 @@ class Task extends ActiveRecord
      * @param User $user
      * @param LocationService $location
      * @throws InvalidConfigException
-     * @throws \Exception
+     * @throws Exception
      */
 
     static function createTask(CreateTaskForm $form, User $user, LocationService $location)
@@ -324,7 +325,7 @@ class Task extends ActiveRecord
         $task->location = $coords;
 
         if (!$task->save()) {
-            throw new \Exception('Задание не сохранено');
+            throw new Exception('Задание не сохранено');
         }
     }
 }

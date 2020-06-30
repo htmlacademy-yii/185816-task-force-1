@@ -4,13 +4,13 @@
  * @var object $content frontend\View\site\create.php
  */
 
+use yii\authclient\widgets\AuthChoice;
 use yii\helpers\Url;
 use yii\helpers\Html;
 use frontend\assets\AppAsset;
 use yii\widgets\ActiveForm;
 
 AppAsset::register($this);
-
 
 ?>
 <?php $this->beginPage() ?>
@@ -22,6 +22,7 @@ AppAsset::register($this);
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <?php $this->registerCsrfMetaTags() ?>
     <title><?= Html::encode($this->title) ?></title>
+    <script src="https://vk.com/js/api/openapi.js?168" type="text/javascript"></script>
     <?php $this->head() ?>
 </head>
 <body class="landing">
@@ -131,6 +132,10 @@ AppAsset::register($this);
         <button class="button button__registration" type="submit">Войти</button>
         <?php ActiveForm::end()?>
         <button class="form-modal-close" type="button">Закрыть</button>
+        <?= yii\authclient\widgets\AuthChoice::widget([
+            'baseAuthUrl' => ['site/auth'],
+            'popupMode' => false,
+        ]) ?>
     </section>
 </div>
 <div class="overlay"></div>

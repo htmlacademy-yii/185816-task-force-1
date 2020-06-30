@@ -2812,7 +2812,8 @@ footer {
   background-color: #ffffff;
   position: fixed;
   top: 100px;
-  width: 300px;
+  width: 400px;
+  height: 387px;
   z-index: 30;
   left: 50%;
   margin-left: -180px;

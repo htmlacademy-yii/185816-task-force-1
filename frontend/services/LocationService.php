@@ -31,7 +31,7 @@ class LocationService
      * @return string
      */
 
-    protected function sendResponse(string $address): string
+    protected function sendResponse(string $address): array
     {
         $response = $this->client->request('GET', $this->uri, [
             'query' => [
