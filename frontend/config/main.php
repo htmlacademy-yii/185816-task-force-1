@@ -87,6 +87,13 @@ return [
                 'event/disable/<id:\d+>' => 'event/disable'
             ],
         ],
+        'redis' => [
+            'class' => 'yii\redis\Connection',
+            'hostname' => 'localhost',
+            'password' => 'taskforce',
+            'port' => 6379,
+            'database' => 0,
+        ]
     ],
     'params' => $params,
 ];

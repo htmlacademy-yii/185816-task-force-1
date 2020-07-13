@@ -4,6 +4,7 @@ namespace frontend\services;
 
 use Exception;
 use GuzzleHttp\Client;
+use Yii;
 use yii\helpers\Json;
 
 class LocationService
@@ -53,6 +54,7 @@ class LocationService
     public function getResponse(string $address): string
     {
         $data = $this->sendResponse($address);
+        $cache = Yii::$app->redis->get(base64_encode($address));
         $result = [];
 
         if (!isset($data)) {
@@ -63,7 +65,15 @@ class LocationService
             array_push($result, $item['GeoObject']['metaDataProperty']['GeocoderMetaData']['Address']);
         }
 
-        return Json::encode($result, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT);
+        if ($cache !== null) {
+            return $cache;
+        } else {
+            Yii::$app->redis->set(base64_encode($address),
+                Json::encode($result, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT)
+            );
+
+            return Json::encode($result, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT);
+        }
     }
 
     /**
