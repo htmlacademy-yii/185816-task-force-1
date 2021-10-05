@@ -1,7 +1,6 @@
 <?php
 
 use yii\db\Migration;
-use frontend\helpers\Date;
 
 /**
  * Handles the creation of table `{{%user}}`.
@@ -30,8 +29,8 @@ class m200130_121010_create_user_table extends Migration
             'view_only_customer' => $this->boolean()->defaultValue(false),
             'avatar' => $this->string()->defaultValue('/img/default-avatar.jpg'),
             'rating' => $this->float()->notNull()->defaultValue(0),
-            'created_at' => $this->dateTime()->defaultValue(Date::getDateNow())->notNull(),
-            'updated_at' => $this->dateTime()->defaultValue(Date::getDateNow())->notNull()
+            'created_at' => $this->dateTime()->defaultExpression('NOW()'),
+            'updated_at' => $this->dateTime()->defaultExpression('NOW()')
         ]);
 
         $this->addForeignKey('fk-role_id', 'user', 'role_id', 'role', 'id');

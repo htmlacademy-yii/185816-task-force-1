@@ -7,6 +7,7 @@ use common\models\CategoryExecutor;
 use common\models\User;
 use common\models\UserSettings;
 use frontend\forms\UserSettingsForm;
+use frontend\helpers\SessionNotices;
 use Yii;
 use yii\db\Exception;
 
@@ -34,6 +35,7 @@ class UserAdditionService
      * UserAdditionService constructor.
      * @param User $user
      * @param UserSettingsForm $form
+     * @throws \yii\base\Exception
      */
 
     public function __construct(User $user, UserSettingsForm $form)
@@ -44,6 +46,8 @@ class UserAdditionService
         $this->userSetting = UserSettings::class;
 
         $this->user->attributes = $this->form->attributes;
+
+        $this->update();
     }
 
     /**
@@ -67,6 +71,7 @@ class UserAdditionService
 
     /**
      * Create new relationship
+     *
      * @param CategoryExecutor|UserSettings $class
      * @param array $attributes
      * @param array $values
@@ -77,15 +82,17 @@ class UserAdditionService
     {
         $class::deleteAll(['user_id' => $this->user->id]);
 
-        $query = Yii::$app->db->createCommand()
-            ->batchInsert(
-                $class::tableName(),
-                $attributes,
-                $values
-            );
+        if(count($values) > 0) {
+            $query = Yii::$app->db->createCommand()
+                ->batchInsert(
+                    $class::tableName(),
+                    $attributes,
+                    $values
+                );
 
-        if (!$query->query()) {
-            throw new Exception('Данные не сохранились');
+            if (!$query->query()) {
+                throw new Exception('Данные не сохранились');
+            }
         }
     }
 
@@ -95,8 +102,9 @@ class UserAdditionService
 
     public function checkStatus()
     {
-        if (!empty($this->specials) && $this->user->role_id === $this->user::CUSTOMER) {
+        if (!empty($this->form->specials) &&  $this->form->specials !== '') {
             $this->user->role_id = $this->user::EXECUTOR;
+
         } else {
             $this->user->role_id = $this->user::CUSTOMER;
         }
@@ -106,7 +114,7 @@ class UserAdditionService
      * @return bool
      */
 
-    public function checkPassword()
+    public function checkPassword(): bool
     {
         return $this->form->password_new === $this->form->password_verify;
     }
@@ -114,6 +122,7 @@ class UserAdditionService
     /**
      * Update new user
      * @return bool|string
+     * @throws \yii\base\Exception
      */
 
     public function update()
@@ -128,10 +137,21 @@ class UserAdditionService
             $this->updateSpecials($this->categoryExecutor, ['user_id', 'category_id'], $this->generateArray($this->user->specials));
             $this->updateSpecials($this->userSetting, ['user_id', 'notice_category_id'], $this->generateArray($this->user->settings));
             $this->checkStatus();
-
             return $this->user->save();
         } catch (Exception $e) {
             return $e->getMessage();
         }
+    }
+
+    /**
+     * Return new class UserSettings
+     *
+     * @param User $user
+     * @param UserSettingsForm $formModel
+     * @return UserAdditionService
+     */
+    public static function changeUserSettings(User $user, UserSettingsForm $formModel): UserAdditionService
+    {
+        return new self($user, $formModel);
     }
 }

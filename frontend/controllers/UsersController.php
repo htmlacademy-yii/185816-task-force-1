@@ -3,10 +3,10 @@
 
 namespace frontend\controllers;
 
-use frontend\forms\UsersForm;
 use common\models\Category;
 use common\models\Comment;
 use common\models\User;
+use frontend\forms\UsersForm;
 use frontend\providers\UsersProvider;
 use Yii;
 use yii\data\Sort;
@@ -14,8 +14,13 @@ use yii\web\NotFoundHttpException;
 
 class UsersController extends BaseController
 {
+    /**
+     * View all users
+     *
+     * @return string
+     */
 
-    public function actionIndex()
+    public function actionIndex(): string
     {
         $form = new UsersForm();
 
@@ -47,12 +52,20 @@ class UsersController extends BaseController
         return $this->render('index', [
             'users' => UsersProvider::getContent($form->attributes, $sort),
             'categories' => Category::find()->select(['category_name'])->indexBy('id')->column(),
-            'model' => $form,
+            'usersSearchForm' => $form,
             'sort' => $sort
         ]);
     }
 
-    public function actionView($id)
+    /**
+     * View current user
+     *
+     * @param int $id
+     * @return string
+     * @throws NotFoundHttpException
+     */
+
+    public function actionView(int $id): string
     {
         $user = User::findOne($id);
         if (Comment::find()->where(['executor_id' => $id])->exists()) {

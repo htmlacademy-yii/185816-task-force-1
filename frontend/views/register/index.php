@@ -1,12 +1,16 @@
 <?php
 
 /**
- * @var \yii\base\Model $model \frontend\forms\SingupForm
+ * @var $model SingupForm
+ * @var $cities City
  */
 
+use common\models\City;
+use frontend\forms\SingupForm;
 use yii\widgets\ActiveForm;
 
 $this->title = 'Регистрация';
+
 ?>
 
 <div class="main-container page-container">

@@ -12,21 +12,20 @@ use yii\web\NotFoundHttpException;
 
 class TasksController extends BaseController
 {
-    public function actionIndex()
+    public function actionIndex(): string
     {
-        $form = new TasksForm();
-        $request = Yii::$app->request;
+        $taskForm = new TasksForm();
 
-        $form->load(Yii::$app->getRequest()->get());
+        $taskForm->load(Yii::$app->getRequest()->get());
 
         return $this->render('index', [
-            'tasks' => TasksProvider::getContent($form->attributes, false),
-            'model' => $form,
+            'tasks' => TasksProvider::getContent($taskForm->attributes, false),
+            'taskForm' => $taskForm,
             'categories' => Category::find()->select(['category_name'])->indexBy('id')->column()
         ]);
     }
 
-    public function actionView($id)
+    public function actionView($id): string
     {
         /**
          * @var User $user

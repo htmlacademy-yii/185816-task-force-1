@@ -2,8 +2,10 @@
 
 namespace common\models;
 
+use Yii;
 use yii\db\ActiveQuery;
 use yii\db\ActiveRecord;
+use yii\db\Exception;
 
 /**
  * This is the model class for table "notice".
@@ -21,16 +23,10 @@ use yii\db\ActiveRecord;
  */
 class Notice extends ActiveRecord
 {
-    public $class = [
-        '1' => 'lightbulb__new-task--message',
-        '2' => 'lightbulb__new-task--executor',
-        '3' => 'lightbulb__new-task--close'
-    ];
-
     /**
      * {@inheritdoc}
      */
-    public static function tableName()
+    public static function tableName(): string
     {
         return 'notice';
     }
@@ -38,7 +34,7 @@ class Notice extends ActiveRecord
     /**
      * {@inheritdoc}
      */
-    public function rules()
+    public function rules(): array
     {
         return [
             [['message'], 'string'],
@@ -53,7 +49,7 @@ class Notice extends ActiveRecord
     /**
      * {@inheritdoc}
      */
-    public function attributeLabels()
+    public function attributeLabels(): array
     {
         return [
             'id' => 'ID',
@@ -68,7 +64,7 @@ class Notice extends ActiveRecord
     /**
      * @return ActiveQuery
      */
-    public function getNoticeCategory()
+    public function getNoticeCategory(): ActiveQuery
     {
         return $this->hasOne(NoticeCategory::class, ['id' => 'notice_category_id']);
     }
@@ -76,33 +72,8 @@ class Notice extends ActiveRecord
     /**
      * @return ActiveQuery
      */
-    public function getUser()
+    public function getUser(): ActiveQuery
     {
         return $this->hasOne(User::class, ['id' => 'user_id']);
-    }
-
-    /**
-     * @return bool
-     */
-
-    public function disable()
-    {
-        $this->visible = false;
-        return $this->save();
-    }
-
-    /**
-     * @param $id
-     * @return bool
-     */
-
-    public static function getVisibleNoticesByUser($id)
-    {
-        return self::find()
-            ->where([
-                'visible' => true,
-                'user_id' => $id
-            ])
-            ->exists();
     }
 }

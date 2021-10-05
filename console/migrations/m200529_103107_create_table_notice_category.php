@@ -15,8 +15,8 @@ class m200529_103107_create_table_notice_category extends Migration
         $this->createTable('{{%notice_category}}', [
             'id' => $this->primaryKey(),
             'name' => $this->char(255)->notNull(),
-            'created_at' => $this->dateTime()->defaultValue(date('Y-m-d H:i:s')),
-            'updated_at' => $this->dateTime()->defaultValue(date('Y-m-d H:i:s'))
+            'created_at' => $this->dateTime()->defaultExpression('NOW()'),
+            'updated_at' => $this->dateTime()->defaultExpression('NOW()')
         ]);
     }
 

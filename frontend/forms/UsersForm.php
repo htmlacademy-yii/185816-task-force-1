@@ -3,8 +3,6 @@
 
 namespace frontend\forms;
 
-
-use common\models\Category;
 use yii\base\Model;
 
 class UsersForm extends Model

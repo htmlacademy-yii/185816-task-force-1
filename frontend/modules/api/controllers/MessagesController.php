@@ -2,8 +2,8 @@
 
 namespace app\modules\api\controllers;
 
-use common\models\Message;
-use yii\helpers\Json;
+use frontend\extensions\models\MessageExtension;
+use yii\db\ActiveRecord;
 use yii\rest\ActiveController;
 
 /**
@@ -11,10 +11,17 @@ use yii\rest\ActiveController;
  */
 class MessagesController extends ActiveController
 {
-    public $modelClass = Message::class;
+    public $modelClass = MessageExtension::class;
 
-    public function actionTask($id)
+    /**
+     * Return messages current task
+     *
+     * @param $id
+     * @return array|ActiveRecord[]
+     */
+
+    public function actionTask($id): array
     {
-        return Message::find()->where(['task_id' => $id])->all();
+        return MessageExtension::find()->where(['task_id' => $id])->all();
     }
 }

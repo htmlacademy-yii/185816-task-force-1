@@ -1,7 +1,6 @@
 <?php
 
 use yii\db\Migration;
-use frontend\helpers\Date;
 
 /**
  * Handles the creation of table `{{%message}}`.
@@ -19,8 +18,8 @@ class m200130_135035_create_message_table extends Migration
             'recipient' => $this->integer()->notNull(),
             'message' => $this->text()->notNull(),
             'task_id' => $this->integer()->notNull(),
-            'created_at' => $this->dateTime()->defaultValue(Date::getDateNow())->notNull(),
-            'updated_at' => $this->dateTime()->defaultValue(Date::getDateNow())->notNull()
+            'created_at' => $this->dateTime()->defaultExpression('NOW()'),
+            'updated_at' => $this->dateTime()->defaultExpression('NOW()')
         ]);
 
         $this->addForeignKey('fkm-sender', 'message', 'sender', 'user', 'id');

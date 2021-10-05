@@ -16,8 +16,8 @@ class m200616_135039_create_table_photo_job extends Migration
             'id' => $this->primaryKey(),
             'user_id' => $this->integer(),
             'img' => $this->string(),
-            'created_at' => $this->dateTime()->defaultValue(date('Y-m-d H:i:s')),
-            'updated_at' => $this->dateTime()->defaultValue(date('Y-m-d H:i:s'))
+            'created_at' => $this->dateTime()->defaultExpression('NOW()'),
+            'updated_at' => $this->dateTime()->defaultExpression('NOW()')
         ]);
 
         $this->addForeignKey('fk-pj-user', 'photo_job', 'user_id', 'user', 'id');

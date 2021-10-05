@@ -8,7 +8,7 @@ use common\models\City;
 use common\models\UploadFileTrait;
 use common\models\User;
 use yii\base\Model;
-use yii\web\UploadedFile;
+
 
 class UserSettingsForm extends Model
 {
@@ -35,9 +35,9 @@ class UserSettingsForm extends Model
     public function rules()
     {
         return [
-            [['full_name', 'phone'], 'required'],
+            [['full_name', ], 'required'],
             [['city_id',], 'integer'],
-            [['date_birth', 'settings','specials', 'hidden', 'view_only_customer', 'avatar', 'photos'], 'safe'],
+            [['date_birth', 'settings','specials', 'hidden', 'view_only_customer', 'avatar', 'photos', 'phone'], 'safe'],
             [['about', 'avatar'], 'string'],
             [['full_name', 'email', 'skype', 'messenger'], 'string', 'max' => 255],
             [['email'], 'unique'],
@@ -80,7 +80,7 @@ class UserSettingsForm extends Model
      * @return UserSettingsForm
      */
 
-    public static function create(User $user)
+    public static function create(User $user): UserSettingsForm
     {
         $form = new self;
         $form->attributes = $user->getAttributes();
@@ -88,5 +88,13 @@ class UserSettingsForm extends Model
         $form->settings = $user->settings;
 
         return $form;
+    }
+
+    public function load($data, $formName = null)
+    {
+        if (parent::load($data, $formName)) {
+            return $this->avatar = $this->upload($this, 'image', $this->avatar);
+        }
+        return false;
     }
 }

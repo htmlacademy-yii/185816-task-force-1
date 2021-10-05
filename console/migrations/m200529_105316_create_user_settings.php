@@ -16,8 +16,8 @@ class m200529_105316_create_user_settings extends Migration
             'id' => $this->primaryKey(),
             'notice_category_id' => $this->integer()->notNull(),
             'user_id' => $this->integer()->notNull(),
-            'created_at' => $this->dateTime()->defaultValue(date('Y-m-d H:i:s')),
-            'updated_at' => $this->dateTime()->defaultValue(date('Y-m-d H:i:s'))
+            'created_at' => $this->dateTime()->defaultExpression('NOW()'),
+            'updated_at' => $this->dateTime()->defaultExpression('NOW()')
         ]);
 
         $this->addForeignKey('fk-set-user', 'user_settings', 'user_id', 'user', 'id');

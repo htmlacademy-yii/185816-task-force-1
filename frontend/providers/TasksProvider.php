@@ -15,7 +15,7 @@ class TasksProvider extends Provider
         return date('Y-m-d H:i:s', $diff);
     }
 
-    /***
+    /**
      * @param array $attributes
      * @param bool $sort
      * @return ActiveDataProvider

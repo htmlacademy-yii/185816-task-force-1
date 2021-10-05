@@ -18,10 +18,11 @@ class MyTasksProvider extends Provider
 
     /***
      * @param array $attributes
+     * @param bool $sort
      * @return ActiveDataProvider
      */
 
-    public static function getContent(array $attributes): ActiveDataProvider
+    public static function getContent(array $attributes, $sort = false): ActiveDataProvider
     {
         $query = Task::find()->where($attributes)->with(['city', 'category', 'user']);
 
@@ -46,7 +47,7 @@ class MyTasksProvider extends Provider
      * @return ActiveDataProvider
      */
 
-    public static function getCommonContent(array $attributes, $user, $failed = false, $date = false)
+    public static function getCommonContent(array $attributes, User $user, $failed = false, $date = false): ActiveDataProvider
     {
         $query = Task::find()->where($attributes)->with(['city', 'category', 'user']);
 

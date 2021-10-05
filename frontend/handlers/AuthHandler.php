@@ -48,7 +48,7 @@ class AuthHandler
             $this->enterUser($user);
         };
 
-        return Yii::$app->response->redirect(['singin/index']);
+        return Yii::$app->response->redirect(['login/index']);
     }
 
     /**

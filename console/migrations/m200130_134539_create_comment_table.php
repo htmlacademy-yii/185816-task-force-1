@@ -1,7 +1,6 @@
 <?php
 
 use yii\db\Migration;
-use frontend\helpers\Date;
 
 /**
  * Handles the creation of table `{{%comment}}`.
@@ -20,8 +19,8 @@ class m200130_134539_create_comment_table extends Migration
             'description' => $this->text(),
             'executor_id' => $this->integer()->notNull(),
             'rating' => $this->double()->notNull()->defaultValue(0),
-            'created_at' => $this->dateTime()->defaultValue(Date::getDateNow())->notNull(),
-            'updated_at' => $this->dateTime()->defaultValue(Date::getDateNow())->notNull()
+            'created_at' => $this->dateTime()->defaultExpression('NOW()'),
+            'updated_at' => $this->dateTime()->defaultExpression('NOW()')
         ]);
 
         $this->addForeignKey('fkc-user_id', 'comment', 'user_id', 'user', 'id');

@@ -5,14 +5,13 @@ namespace frontend\providers;
 
 
 use common\models\CategoryExecutor;
-use common\models\Task;
 use yii\data\ActiveDataProvider;
 use yii\data\Sort;
 
 class UsersProvider extends Provider
 {
 
-    /***
+    /**
      * @param array $attributes frontend\Forms\UserForm
      * @param bool|Sort $sort
      * @return ActiveDataProvider

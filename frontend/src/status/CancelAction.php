@@ -16,7 +16,5 @@ class CancelAction extends AvailableActions
        if(!$this->task->isUserOwner($this->currentUser)) {
            throw new StatusException('Доступ запрещен, обратитесь к администратору');
        }
-
-       // TODO: Implement checkPermission() method.
    }
 }

@@ -1,7 +1,6 @@
 <?php
 
 use yii\db\Migration;
-use frontend\helpers\Date;
 
 /**
  * Class m200130_112712_create_category
@@ -17,8 +16,8 @@ class m200130_112712_create_category_table extends Migration
             'id' => $this->primaryKey('255')->unique(),
             'category_name' => $this->text()->notNull(),
             'tag' => $this->text()->notNull(),
-            'created_at' => $this->dateTime()->defaultValue(Date::getDateNow())->notNull(),
-            'updated_at' => $this->dateTime()->defaultValue(Date::getDateNow())->notNull()
+            'created_at' => $this->dateTime()->defaultExpression('NOW()'),
+            'updated_at' => $this->dateTime()->defaultExpression('NOW()')
         ]);
     }
 

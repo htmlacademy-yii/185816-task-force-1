@@ -29,7 +29,7 @@ class LocationService
 
     /**
      * @param string $address
-     * @return string
+     * @return array
      */
 
     protected function sendResponse(string $address): array

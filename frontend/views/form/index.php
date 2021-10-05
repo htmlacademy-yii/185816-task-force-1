@@ -34,8 +34,3 @@ use yii\widgets\ActiveField;
         <?php $form = ActiveForm::end() ?>
     </div>
 </section>
-<p><?php
-    echo "<pre>";
-    print_r($result);
-    ?>
-</p>

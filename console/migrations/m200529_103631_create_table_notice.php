@@ -18,8 +18,8 @@ class m200529_103631_create_table_notice extends Migration
             'notice_category_id' => $this->integer()->notNull(),
             'user_id' => $this->integer()->notNull(),
             'visible' => $this->boolean()->notNull(),
-            'created_at' => $this->dateTime()->defaultValue(date('Y-m-d H:i:s')),
-            'updated_at' => $this->dateTime()->defaultValue(date('Y-m-d H:i:s'))
+            'created_at' => $this->dateTime()->defaultExpression('NOW()'),
+            'updated_at' => $this->dateTime()->defaultExpression('NOW()')
         ]);
 
         $this->addForeignKey('fk-notice-cat', 'notice', 'notice_category_id', 'notice_category', 'id');

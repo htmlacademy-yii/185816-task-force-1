@@ -2,8 +2,6 @@
 
 namespace common\models;
 
-
-use phpDocumentor\Reflection\Types\Self_;
 use yii\db\ActiveQuery;
 use yii\db\ActiveRecord;
 

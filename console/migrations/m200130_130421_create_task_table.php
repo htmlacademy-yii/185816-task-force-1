@@ -1,7 +1,6 @@
 <?php
 
 use yii\db\Migration;
-use frontend\helpers\Date;
 
 /**
  * Handles the creation of table `{{%task}}`.
@@ -27,8 +26,8 @@ class m200130_130421_create_task_table extends Migration
             'deadline' => $this->date()->notNull(),
             'status_id' => $this->integer()->notNull(),
             'file' => $this->string(),
-            'created_at' => $this->dateTime()->defaultValue(date('Y-m-d H:i:s'))->notNull(),
-            'updated_at' => $this->dateTime()->defaultValue(date('Y-m-d H:i:s'))->notNull()
+            'created_at' => $this->dateTime()->defaultExpression('NOW()'),
+            'updated_at' => $this->dateTime()->defaultExpression('NOW()')
         ]);
 
         $this->addForeignKey('fkt-category_id', 'task', 'category_id', 'category', 'id');

@@ -16,8 +16,8 @@ class m200316_080541_create_category_executor_table extends Migration
             'id' => $this->primaryKey(),
             'user_id' => $this->integer()->notNull(),
             'category_id' => $this->integer()->notNull(),
-            'created_at' => $this->dateTime()->notNull()->defaultValue(\frontend\helpers\Date::getDateNow()),
-            'updated_at' => $this->dateTime()->notNull()->defaultValue(\frontend\helpers\Date::getDateNow()),
+            'created_at' => $this->dateTime()->defaultExpression('NOW()'),
+            'updated_at' => $this->dateTime()->defaultExpression('NOW()'),
         ]);
 
         $this->addForeignKey('fke-user-executor', 'category_executor', 'user_id', 'user', 'id' );

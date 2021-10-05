@@ -7,10 +7,18 @@ namespace frontend\controllers;
 use frontend\forms\SinginForm;
 use frontend\forms\SingupForm;
 use Yii;
+use yii\web\Response;
 
-class SinginController extends BaseController
+class LoginController extends BaseController
 {
     public $model;
+
+    /**
+     * Check login user or guest
+     *
+     * @param $action
+     * @return string|Response
+     */
 
     public function beforeAction($action)
     {
@@ -20,6 +28,12 @@ class SinginController extends BaseController
             return Yii::$app->response->redirect('/tasks/');
         }
     }
+
+    /**
+     * Login route
+     *
+     * @return string|Response
+     */
 
     public function actionIndex()
     {
@@ -33,7 +47,7 @@ class SinginController extends BaseController
             if ($model->validate()) {
                 $user = $model->getUser();
                 \Yii::$app->user->login($user);
-                $session->setFlash('reg', "Добро пожаловать $user->full_name");
+                $session->setFlash('success', "Добро пожаловать $user->full_name");
                 return $this->goHome();
             }
         }

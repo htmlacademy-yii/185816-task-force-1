@@ -3,7 +3,7 @@
 use Faker\Factory;
 $faker = Factory::create();
 
-$count = 5;
+$count = 15;
 
 function getTask($faker) {
     $faker = Factory::create();
